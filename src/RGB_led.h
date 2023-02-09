@@ -1,62 +1,55 @@
 #ifdef IS_RUNNING_TESTS
     #include <mocks/HAL_PWM_api.h>
+    #include <mocks/HAL_system_singleton.h>
 #else
     #include "HAL_for_platformio/HAL_API/HAL_PWM/HAL_PWM_api.h"
+    #include "HAL_for_platformio/HAL_API/HAL_system/HAL_system_singleton.h"
 #endif
+
+enum class common_mode {COMMON_CATHODE, COMMON_ANODE};
 
 class RGB_led {
 public:
-    RGB_led(const int rgb[3]) {
-        RGB_led(rgb[0], rgb[1], rgb[2]);
-    }
-    RGB_led(int red_pin, int green_pin, int blue_pin) {
-        pwm_red = new PWM_hal(red_pin);
-        pwm_green = new PWM_hal(green_pin);
-        pwm_blue = new PWM_hal(blue_pin);
-    }
+    RGB_led(const uint8_t rgb[3], common_mode mode);
+    RGB_led(uint8_t red_pin, uint8_t green_pin, uint8_t blue_pin, common_mode mode);
+    ~RGB_led();
 
-    ~RGB_led() {
-        delete pwm_red;
-        delete pwm_green;
-        delete pwm_blue;
-    }
+    void set_ON_mode();
+    void set_OFF_mode();
+    void set_BLINK_mode(uint32_t interval_in_milliseconds);
 
-    void set_ON_mode() {
-        _mode = mode::ON;
-    }
+    void set_color(const uint8_t rgb[3]);
+    void set_color(uint8_t red, uint8_t green, uint8_t blue);
 
-    void set_OFF_mode() {
-        _mode = mode::OFF;
-    }
+    uint8_t get_red_value();
+    uint8_t get_green_value();
+    uint8_t get_blue_value();
 
-    void run_pending_tasks() {
-        pwm_red->set_duty_cycle(100);
-        pwm_green->set_duty_cycle(100);
-        pwm_blue->set_duty_cycle(100);
-    }
-
-    void set_color(const int rgb[3]) {
-        set_color(rgb[0], rgb[1], rgb[2]);
-    }
-
-    void set_color(int red, int green, int blue) {
-        float pwm_red_value = (100*(float)red)/255;
-        pwm_red->set_duty_cycle(pwm_red_value);
-        
-        float pwm_green_value = (100*(float)red)/255;
-        pwm_green->set_duty_cycle(pwm_green_value);
-        
-        float pwm_blue_value = (100*(float)red)/255;
-        pwm_blue->set_duty_cycle(pwm_blue_value);
-    }
-
-
+    void run_pending_tasks();
 
 private:
+    HAL_system_api* device;
+    
     PWM_hal* pwm_red = nullptr;
     PWM_hal* pwm_green = nullptr;
     PWM_hal* pwm_blue = nullptr;
 
-    enum class mode {ON, OFF};
+    uint8_t rgb[3] = {255, 255, 255};
+    float _pwm_red_value = 100;
+    float _pwm_green_value = 100;
+    float _pwm_blue_value = 100;
+
+    uint32_t blink_interval_in_ms;
+    uint32_t last_ms_since_toggle_LED = 0;
+
+    enum class mode {ON, OFF, BLINK};
     mode _mode = mode::OFF;
+
+    common_mode _common_mode;
+
+    bool is_LED_ON = false;
+
+    void turn_on_LEDs();
+    void turn_off_LEDs();
+    void toggle_LEDs_when_is_time();
 };
