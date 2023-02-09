@@ -94,8 +94,8 @@ void RGB_led::set_color(uint8_t red, uint8_t green, uint8_t blue) {
     rgb[2] = blue;
 
     _pwm_red_value = (100*(float)red)/255;
-    _pwm_green_value = (100*(float)red)/255;
-    _pwm_blue_value = (100*(float)red)/255;
+    _pwm_green_value = (100*(float)green)/255;
+    _pwm_blue_value = (100*(float)blue)/255;
 }
 
 uint8_t RGB_led::get_red_value() {
