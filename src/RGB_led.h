@@ -2,11 +2,19 @@
     #include <mocks/HAL_PWM_api.h>
     #include <mocks/HAL_system_singleton.h>
 #else
-    #include "HAL_for_platformio/HAL_API/HAL_PWM/HAL_PWM_api.h"
-    #include "HAL_for_platformio/HAL_API/HAL_system/HAL_system_singleton.h"
+    #include <HAL_API/HAL_PWM/HAL_PWM_api.h>
+    #include <HAL_API/HAL_system/HAL_system_singleton.h>
 #endif
 
 enum class common_mode {COMMON_CATHODE, COMMON_ANODE};
+
+#define COLOR_RED 255,0,0
+#define COLOR_GREEN 0,255,0
+#define COLOR_BLUE 0,0,255
+#define COLOR_YELLOW 255,255,0
+#define COLOR_PURPLE 255,0,255
+#define COLOR_BLUE_SKY 0,255,255
+#define COLOR_WHITE 255,255,255 
 
 class RGB_led {
 public:
