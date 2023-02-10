@@ -1,3 +1,5 @@
+#pragma once
+
 #ifdef IS_RUNNING_TESTS
     #include <mocks/HAL_PWM_api.h>
     #include <mocks/HAL_system_singleton.h>
