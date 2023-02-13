@@ -1,4 +1,16 @@
 #pragma once
+/** This class allows to control an RGB LED.
+ *  The channels used are:
+ *  - Channel 1: for RED
+ *  - Channel 2: for GREEN
+ *  - Channel 3: for BLUE
+ * 
+ * !!!WARNING!!!
+ * Use more than one instance will share the pwm channels
+ * Use channel 1, 2, 3 with in other parts of code will generate issues with the library.
+ * 
+ * **/
+
 
 #ifdef IS_RUNNING_TESTS
     #include <mocks/HAL_PWM_api.h>
