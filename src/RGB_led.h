@@ -16,8 +16,8 @@
     #include <mocks/HAL_PWM_api.h>
     #include <mocks/HAL_system_singleton.h>
 #else
-    #include <HAL_API/HAL_PWM/HAL_PWM_api.h>
-    #include <HAL_API/HAL_system/HAL_system_singleton.h>
+    #include <HAL_PWM/HAL_PWM_api.h>
+    #include <HAL_system/HAL_system_singleton.h>
 #endif
 
 enum class common_mode {COMMON_CATHODE, COMMON_ANODE};
@@ -52,9 +52,9 @@ public:
 private:
     HAL_system_api* device;
     
-    PWM_hal* pwm_red = nullptr;
-    PWM_hal* pwm_green = nullptr;
-    PWM_hal* pwm_blue = nullptr;
+    HAL_PWM* pwm_red = nullptr;
+    HAL_PWM* pwm_green = nullptr;
+    HAL_PWM* pwm_blue = nullptr;
 
     uint8_t rgb[3] = {255, 255, 255};
     float _pwm_red_value = 100;

@@ -5,9 +5,9 @@ RGB_led::RGB_led(const uint8_t rgb[3], common_mode mode) {
 }
 
 RGB_led::RGB_led(uint8_t red_pin, uint8_t green_pin, uint8_t blue_pin, common_mode mode) {
-    pwm_red = new PWM_hal(red_pin, 1);
-    pwm_green = new PWM_hal(green_pin, 2);
-    pwm_blue = new PWM_hal(blue_pin, 3);
+    pwm_red = new HAL_PWM(red_pin, 1);
+    pwm_green = new HAL_PWM(green_pin, 2);
+    pwm_blue = new HAL_PWM(blue_pin, 3);
     _common_mode = mode;
 }
 
