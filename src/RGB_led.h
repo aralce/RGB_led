@@ -38,7 +38,7 @@ public:
 
     void set_ON_mode();
     void set_OFF_mode();
-    void set_BLINK_mode(uint32_t interval_in_milliseconds);
+    void set_BLINK_mode(uint32_t period_in_milliseconds);
 
     void set_color(const uint8_t rgb[3]);
     void set_color(uint8_t red, uint8_t green, uint8_t blue);

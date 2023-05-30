@@ -79,9 +79,9 @@ void RGB_led::set_OFF_mode() {
     _mode = mode::OFF;
 }
 
-void RGB_led::set_BLINK_mode(uint32_t interval_in_milliseconds) {
+void RGB_led::set_BLINK_mode(uint32_t period_in_milliseconds) {
     _mode = mode::BLINK;
-    blink_interval_in_ms = interval_in_milliseconds;
+    blink_interval_in_ms = period_in_milliseconds;
 }
 
 void RGB_led::set_color(const uint8_t rgb[3]) {
