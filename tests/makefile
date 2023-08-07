@@ -15,7 +15,9 @@ quiet := @
 
 #RULES
 all: make_dir tests
-	$(quiet)echo "RGB led tests"
+	@echo "======================"
+	@echo "| RGB_LED UNIT TESTS |"
+	@echo "======================"	
 	$(quiet)./tests 
 
 cpp_files  = $(wildcard *.cpp)

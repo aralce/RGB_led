@@ -17,11 +17,11 @@ TEST_GROUP(RGB_LED_instantiation)
 #define BLUE_PIN 2
 
 void CHECK_pwm_are_instantiated() {
-    mock().expectOneCall("PWM_hal->construct")
+    mock().expectOneCall("HAL_PWM->construct")
           .withUnsignedIntParameter("gpio_to_use", RED_PIN);
-    mock().expectOneCall("PWM_hal->construct")
+    mock().expectOneCall("HAL_PWM->construct")
           .withUnsignedIntParameter("gpio_to_use", GREEN_PIN);
-    mock().expectOneCall("PWM_hal->construct")
+    mock().expectOneCall("HAL_PWM->construct")
           .withUnsignedIntParameter("gpio_to_use", BLUE_PIN);
 }
 
@@ -179,6 +179,6 @@ TEST(RGB_LED, GIVEN_instantiated_on_common_anode_WHEN_set_OFF_mode_THEN_set_pwm_
 }
 
 void CHECK_PWM_set_duty_calls_for_RGB(float duty_cycle) {
-    mock().expectNCalls(3, "PWM_hal->set_duty_cycle")
+    mock().expectNCalls(3, "HAL_PWM->set_duty_cycle")
           .withDoubleParameter("duty_cycle", duty_cycle);
 }

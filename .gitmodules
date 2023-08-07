@@ -1,3 +1,6 @@
 [submodule "cpputest"]
 	path = tests/cpputest
 	url = git@github.com:aralce/cpputest.git
+[submodule "tests/cpputest"]
+	path = tests/cpputest
+	url = git@github.com:aralce/cpputest.git

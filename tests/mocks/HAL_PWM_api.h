@@ -9,15 +9,15 @@
 #define DEFAULT_PWM_RESOLUTION 10
 #define MAX_VALUE_FOR_DEFAULT_PWM_RESOLUTION 1024
 
-class PWM_hal {
+class HAL_PWM {
 public:
-    PWM_hal(uint8_t gpio_to_use) {
-        mock().actualCall("PWM_hal->construct")
+    HAL_PWM(uint8_t gpio_to_use, uint8_t channel = DEFAULT_PWM_CHANNEL) {
+        mock().actualCall("HAL_PWM->construct")
               .withUnsignedIntParameter("gpio_to_use", gpio_to_use);
     }
 
     void set_duty_cycle(float duty_cycle) {
-        mock().actualCall("PWM_hal->set_duty_cycle")
+        mock().actualCall("HAL_PWM->set_duty_cycle")
               .withDoubleParameter("duty_cycle", duty_cycle);
     }
 };
