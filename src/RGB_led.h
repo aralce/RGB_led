@@ -23,6 +23,7 @@
 enum class common_mode {COMMON_CATHODE, COMMON_ANODE};
 
 #define COLOR_RED 255,0,0
+#define COLOR_ORANGE 255,165,0
 #define COLOR_GREEN 0,255,0
 #define COLOR_BLUE 0,0,255
 #define COLOR_YELLOW 255,255,0
